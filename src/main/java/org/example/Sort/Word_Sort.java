@@ -3,7 +3,9 @@ package org.example.Sort;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Word_Sort{
@@ -25,7 +27,12 @@ public class Word_Sort{
         }catch (IOException e){
             e.printStackTrace();
         }
-        for (Map.Entry<String, Integer> entry : wordCount.entrySet()){
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(wordCount.entrySet());
+
+
+        list.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
+
+        for (Map.Entry<String, Integer> entry : list){
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
     }
